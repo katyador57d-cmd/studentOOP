@@ -22,14 +22,14 @@ $student->addGrade($grade);
 $newGrade = $student->getGradesBySubject('Math');
 //print_r($newGrade);
 
-$mostGrade = $student->getMostCommonGrade('English');
+$mostGrade = $student->getMostCommonGrade();
 //print_r($mostGrade);
 
 $bestGrades = $student->getBestGrade();
 //print_r($bestGrades);
 
 $s = $student->getSubjectMostCommonGrade('English');
-//print_r($s);
+print_r($s);
 
 $d = $student->hasGradeBySubject('Math', 'A');
 
