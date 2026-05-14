@@ -39,31 +39,31 @@ class Student {
 
         $result = [];
         foreach ($this->grades as $grade) {
-            if($grade->subject === $subject) {
+            if ($grade->subject === $subject) {
                 $result[] = $grade;
             }
         }
         return $result;
     }
 
-    public function getMostCommonGrade(string $subject): ?string
+    public function getMostCommonGrade(): string
     {
-        if(empty($this->grades)) {
-            return null;
-        }
+        $mostCommonGrade = '';
 
         $gradesCount = [];
 
-        foreach($this->grades as $grade) {
-            if(!isset($gradesCount[$grade->grade])) {
+        foreach($this->getGrades() as $grade) {
+            if (!isset($gradesCount[$grade->grade])) {
                 $gradesCount[$grade->grade] = 0;
             }
+
             $gradesCount[$grade->grade]++;     
         }
 
         arsort($gradesCount);
-        return array_key_first($gradesCount);
+        $mostCommonGrade = array_key_first($gradesCount);
 
+        return $mostCommonGrade;
     }
 
     public function getBestGrade(): ?string
@@ -84,33 +84,29 @@ class Student {
 
     }
 
-    public function getSubjectMostCommonGrade(string $subject): ?string
+    public function getSubjectMostCommonGrade(string $subject): string
     {  
-        $filtered= [];
+        $filtered= $this->getGradesBySubject($subject);
 
-        foreach($this->grades as $grade) {
-            if($grade->subject === $subject) {
-                $filtered[] = $grade;
-            }
+        if (empty($filtered)) {
+            return '';
         }
 
-        if(empty($filtered)) {
-            return null;
-        }
-        
         $gradeCount = [];
 
         foreach($filtered as $grade) {
            
-            if(!isset($gradeCount[$grade->grade])) {
+            if (!isset($gradeCount[$grade->grade])) {
                 $gradeCount[$grade->grade] = 0;
             }
-        $gradeCount[$grade->grade]++;
-        
-    }
+
+            $gradeCount[$grade->grade]++;
+        }
         
         arsort($gradeCount);
-        return array_key_first($gradeCount);
+        $mostCommonGrade = array_key_first($gradeCount);
+        return $mostCommonGrade;
+
     }
 
     public function hasGradeBySubject(string $subject, string $grade): bool
