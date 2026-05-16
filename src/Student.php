@@ -52,7 +52,7 @@ class Student {
 
         $gradesCount = [];
 
-        foreach($this->getGrades() as $grade) {
+        foreach ($this->getGrades() as $grade) {
             if (!isset($gradesCount[$grade->grade])) {
                 $gradesCount[$grade->grade] = 0;
             }
@@ -68,13 +68,13 @@ class Student {
 
     public function getBestGrade(): ?string
     {
-        if(empty($this->grades)) {
+        if (empty($this->grades)) {
             return null;
         }     
        
         $bestGrade = $this->grades[0]->grade;
 
-        foreach($this->grades as $grade) {
+        foreach ($this->grades as $grade) {
             if (array_search($grade->grade, Grade::GRADES) < array_search($bestGrade, Grade::GRADES)) {
                 $bestGrade = $grade->grade;
             }
@@ -111,8 +111,8 @@ class Student {
 
     public function hasGradeBySubject(string $subject, string $grade): bool
     {
-        foreach($this->grades as $item) {
-            if($item->subject === $subject && $item->grade === $grade) {
+        foreach ($this->grades as $item) {
+            if ($item->subject === $subject && $item->grade === $grade) {
                 return true;
             }
         }
