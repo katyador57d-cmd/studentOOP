@@ -104,7 +104,7 @@ class Student {
         }
         
         arsort($gradeCount);
-        $mostCommonGrade = array_key_first($gradeCount);
+        $mostCommonGrade = array_key_first($gradeCount) ?? '';
         return $mostCommonGrade;
 
     }

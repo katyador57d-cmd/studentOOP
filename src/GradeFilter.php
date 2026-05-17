@@ -34,7 +34,7 @@ class GradeFilter {
         $result = [];
 
         foreach ($students as $student) {
-            if ($subject === $student->hasGradeBySubject($subject, $grade)) {
+            if ($student->hasGradeBySubject($subject, $grade)) {
                 $result[] = $student;
             }
         }
